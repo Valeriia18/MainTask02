@@ -12,9 +12,9 @@ import java.io.Serializable;
       @version 1.0 19 Jan 2019
   @author Valeriia Amialchenia
  */
-public class Durian extends ExoticFruit implements Serializable {
+public class Durian extends ExoticFruit {
 
-    String alcoholNotification;
+    private String alcoholNotification;
 
     public Durian(String name, double price, double weight, double caloriePer100g,
             String type, boolean isPoisonous, String alcoholNotification) {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class FruitSaladCalories {
         public static double getTotalCalories(ArrayList<Fruit> list) throws NegativeWeightException, NegativeCaloriesException {
-        double sumCalories = 0;
+        double sumCalories = 0.0;
 
         for (Fruit temp : list) {
             try {

@@ -6,6 +6,7 @@ import by.epam.javatraining.valeriiaamialchenia.maintask02.Exceptions.NegativeCa
 import by.epam.javatraining.valeriiaamialchenia.maintask02.controller.MainTask02;
 import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.model.entity.Fruit;
 import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.view.ConsolePrinter;
+import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.view.LogPrinter;
 
 import java.io.*;
 import java.io.FileReader;
@@ -23,9 +24,10 @@ Class implements serialization and deserialization of given ArrayList
  */
 public class FruitSaladFile {
 
+    private static final ConsolePrinter cp = new ConsolePrinter();
+
     public static void loadInitialSaladFromFile(ArrayList<Fruit> list) throws NegativeWeightException, NegativeCaloriesException, IOException {
 
-        
         try {
             FileOutputStream f = new FileOutputStream(new File("C:\\Temp\\Java\\FruitSalad.txt"));
             ObjectOutputStream o = new ObjectOutputStream(f);
@@ -37,7 +39,7 @@ public class FruitSaladFile {
             // Read objects
             list = (ArrayList<Fruit>) oi.readObject();
 
-            ConsolePrinter.print("" + list);
+            cp.print("" + list);
 
             o.close();
             f.close();
@@ -45,6 +47,5 @@ public class FruitSaladFile {
         }
 
     }
-
 
 }

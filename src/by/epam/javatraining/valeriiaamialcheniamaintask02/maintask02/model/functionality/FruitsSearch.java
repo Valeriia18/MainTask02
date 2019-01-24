@@ -1,8 +1,8 @@
 package by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.model.functionality;
 
 import by.epam.javatraining.valeriiaamialchenia.maintask02.Exceptions.*;
-import by.epam.javatraining.valeriiaamialchenia.maintask02.Exceptions.NullArrayException;
 import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.model.entity.*;
+import by.epam.javatraining.valeriiaamialchenia.maintask02.controller.MainTask02;
 import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.view.LogPrinter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,21 +12,22 @@ import java.util.Collections;
  * @author Алексей-Валерия
  */
 public class FruitsSearch {
-
-    public static String findMaxCalorificFruit(ArrayList<Fruit> list) {
+private static LogPrinter lp = new LogPrinter();
+    public static StringBuilder findMaxCalorificFruit(ArrayList<Fruit> list) {
+        StringBuilder builder = new StringBuilder();
         double MaxCalorificValue = 0;
         String MaxCalorificFruit = "";
         try {
             for (Fruit temp : list) {
-                if (temp.getCaloriePer100g() > 0) {
+                if (temp.getCaloriePer100g() > MaxCalorificValue) {
                     MaxCalorificValue = temp.getCaloriePer100g();
-                    MaxCalorificFruit = temp.getName();
+                    builder.setLength(0);
+                    builder.append(temp.getName());
                 }
             }
         } catch (NegativeCaloriesException b) {
         }
-        return "The most calorific fruit is " + MaxCalorificFruit
-                + ". It contains " + MaxCalorificValue + " cal. per 100g";
+        return builder;
     }
 
     public static String findMostExpensiveFruit(ArrayList<Fruit> list)
@@ -48,7 +49,8 @@ public class FruitsSearch {
 
             }
         }
-        return "The most expensive fruit is " + s + ". It's price is " + highestPrice;
+        return "The most expensive fruit is " + s + ". The price is " + highestPrice;
+        //return s;
     }
 
     public static String findCheapestFruit(ArrayList<Fruit> list) throws
@@ -70,15 +72,15 @@ public class FruitsSearch {
         } catch (NegativePriceException e) {
         }
 
-        return "The cheapest fruit is " + s + ". It's price is " + lowestPrice;
+        return "The cheapest fruit is " + s + ". The price is " + lowestPrice;
     }
 
     public static StringBuilder findFruitByPrice(double a, double b, ArrayList<Fruit> list) throws NegativePriceException {
         StringBuilder builder = new StringBuilder();
         try {
             for (Fruit temp : list) {
-                if ((temp.getPrice() >= a && temp.getPrice() <= b) || (temp.getPrice() >= b && temp.getPrice() <= a)) {
-                    builder.append(temp.getName()).append("(").append(temp.getType()).append("), ");
+                if (temp.getPrice() >= a && temp.getPrice() <= b) {
+                    builder.append(temp.getName()).append("(").append(temp.getType()).append(")");
                 }
             }
         } catch (NegativePriceException p) {
@@ -116,7 +118,8 @@ public class FruitsSearch {
         StringBuilder builder = new StringBuilder();
         for (Fruit temp : list) {
             if (name == null) {
-                LogPrinter.print("String with name cannot be empty!");
+               lp.print("");
+                lp.print("String with name cannot be empty!");
             } else if (name.equals(temp.getName())) {
                 builder.append(temp.getName()).append("(").append(temp.getType()).append("), ");
 
@@ -124,6 +127,22 @@ public class FruitsSearch {
         }
         return builder;
 
+    }
+
+    public static String findMaxCalorificFruit2(ArrayList<Fruit> list) {
+        String s = "";
+        double MaxCalorificValue = 0;
+        String MaxCalorificFruit = "";
+        try {
+            for (Fruit temp : list) {
+                if (temp.getCaloriePer100g() > 0) {
+                    s = temp.getName();
+
+                }
+            }
+        } catch (NegativeCaloriesException b) {
+        }
+        return s;
     }
 
 }

@@ -12,9 +12,9 @@ import java.io.Serializable;
       @version 1.0 19 Jan 2019
   @author Valeriia Amialchenia
  */
-public class Pear extends GardenFruit implements Serializable{
+public class Pear extends GardenFruit {
 
-    double magnesiumPer100g;
+   private double magnesiumPer100g;
 
     public Pear(String name, double price, double weight, double caloriePer100g,
             String type, double vitaminA, double calcium, double magnesiumPer100g) {

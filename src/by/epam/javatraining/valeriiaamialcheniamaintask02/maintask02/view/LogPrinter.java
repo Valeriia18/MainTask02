@@ -9,12 +9,13 @@ import org.apache.log4j.Logger;
       @version 1.0 19 Jan 2019
   @author Valeriia Amialchenia
  */
-public class LogPrinter extends Printer {
+public class LogPrinter implements Printable {
 
     private static org.apache.log4j.Logger log = null;
-
-    public static void print(String msg) {
-        log = Logger.getLogger(LogPrinter.class);
+   
+        @Override
+    public void print(String msg) {
+         log = Logger.getLogger(LogPrinter.class);
         log.info(msg);
     }
 }

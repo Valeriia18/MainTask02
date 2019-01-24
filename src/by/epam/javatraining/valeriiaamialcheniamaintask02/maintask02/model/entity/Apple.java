@@ -12,7 +12,7 @@ import java.lang.*;
       @version 1.0 19 Jan 2019
   @author Valeriia Amialchenia
  */
-public class Apple extends GardenFruit implements Serializable{
+public class Apple extends GardenFruit {
 
     private double phosphorusPer100g;
 

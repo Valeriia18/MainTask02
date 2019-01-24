@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Fruit implements Serializable {
 
     String name;
-    double price;
+    private double price;
     private double weight;
     private double caloriePer100g;
     String type;

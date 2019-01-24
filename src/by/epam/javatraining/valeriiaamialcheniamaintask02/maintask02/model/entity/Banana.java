@@ -12,9 +12,9 @@ import java.io.Serializable;
       @version 1.0 19 Jan 2019
   @author Valeriia Amialchenia
  */
-public class Banana extends TropicalFruit implements Serializable {
+public class Banana extends TropicalFruit{
 
-    double potassiumPer100g;
+    private double potassiumPer100g;
 
     public Banana(String name, double price, double weight, double caloriePer100g,
             String type, String county, double potassiumPer100g) {
@@ -23,7 +23,7 @@ public class Banana extends TropicalFruit implements Serializable {
         this.potassiumPer100g = potassiumPer100g;
     }
 
-    public double getPotassiumPer100g() throws NegativeVitaminsException {
+        public double getPotassiumPer100g() throws NegativeVitaminsException {
         if (potassiumPer100g <= 0) {
             throw new NegativeVitaminsException();
         }

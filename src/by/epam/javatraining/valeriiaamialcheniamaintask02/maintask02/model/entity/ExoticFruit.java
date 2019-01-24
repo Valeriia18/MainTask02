@@ -9,9 +9,9 @@ import java.io.Serializable;
     @version 1.0 19 Jan 2019
     @author Valeriia Amialchenia
  */
-public class ExoticFruit extends Fruit implements Serializable {
+public class ExoticFruit extends Fruit {
 
-    boolean isPoisonous;
+   private boolean isPoisonous;
 
     public ExoticFruit(String name, double price, double weight, double caloriePer100g, String type, boolean isPoisonous) {
         super(name, price, weight, caloriePer100g, type);

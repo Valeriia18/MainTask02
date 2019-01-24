@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class FruitSaladTotalWeight {
     public static double getTotalWeight(ArrayList<Fruit> list) {
-        double sum = 0;
+        double sum = 0.0;
        try{
         for (Fruit temp : list) {
             sum += temp.getWeight();

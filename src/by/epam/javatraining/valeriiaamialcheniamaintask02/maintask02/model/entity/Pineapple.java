@@ -11,9 +11,9 @@ import java.io.Serializable;
       @version 1.0 19 Jan 2019
   @author Valeriia Amialchenia
  */
-public class Pineapple extends TropicalFruit implements Serializable{
+public class Pineapple extends TropicalFruit{
 
-    double vitaminBPer100g;
+   private double vitaminBPer100g;
 
     public Pineapple(String name, double price, double weight, double caloriePer100g, String type, String county, double vitaminBPer100g) {
         super(name, price, weight, caloriePer100g, type, county);
