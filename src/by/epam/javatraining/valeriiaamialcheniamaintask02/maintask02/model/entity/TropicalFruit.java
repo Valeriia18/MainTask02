@@ -13,9 +13,24 @@ public class TropicalFruit extends Fruit implements Serializable {
 
     String country;
 
-    public TropicalFruit(String name, double price, double weight, double caloriePer100g, String type, String county) {
+    public TropicalFruit(String name, double price, double weight, double caloriePer100g, FruitType type, String county) {
         super(name, price, weight, caloriePer100g, type);
         this.country = country;
+
+    }
+
+    public TropicalFruit() {
+        super();
+        this.country = "No country known";
+
+    }
+
+    public void setCountry() {
+        if (country != null) {
+            this.country = country;
+        } else {
+            country = "";
+        }
 
     }
 
@@ -25,17 +40,7 @@ public class TropicalFruit extends Fruit implements Serializable {
 
     @Override
     public String toString() {
-        String s = "";
-        try {
-            s = "Name: " + getName()
-                    + "Price: " + getPrice() + "Weight: " + getWeight()
-                    + "Calories per 100g: " + getCaloriePer100g()
-                    + "Kind of fruit:" + getType() + "Country of origin: " + country;
-
-        } catch (NegativeWeightException | NegativeCaloriesException
-                | NegativePriceException a) {
-
-        }
+        String s = super.toString() + "Country of origin: " + country;
 
         return s;
     }
@@ -49,15 +54,9 @@ public class TropicalFruit extends Fruit implements Serializable {
         if (object == null || object.getClass() != this.getClass()) {
             return false;
         }
-        try {
-            TropicalFruit fruit = (TropicalFruit) object;
-            result = getName().equals(fruit.getName()) && getPrice() == fruit.getPrice()
-                    && getWeight() == fruit.getWeight()
-                    && getCaloriePer100g() == fruit.getCaloriePer100g()
-                    && getType().equals(fruit.getType())
-                    && getCountry().equals(fruit.getCountry());
-        } catch (NegativeWeightException | NegativeCaloriesException | NegativePriceException e) {
-        }
+        TropicalFruit fruit = (TropicalFruit) object;
+        result = super.equals(fruit) && country.equals(fruit.country);
+
         return result;
     }
 
@@ -65,15 +64,10 @@ public class TropicalFruit extends Fruit implements Serializable {
     public int hashCode() {
         final int prime = 37;
         int result = 1;
-        try {
-            result = prime * result + ((getName() != null) ? getName().hashCode() : 0);
-            result = (int) (prime * result + getPrice());
-            result = (int) (prime * result + getWeight());
-            result = (int) (prime * result + getCaloriePer100g());
-            result = prime * result + ((getType() != null) ? getType().hashCode() : 0);
-            result = prime * result + ((getCountry() != null) ? getCountry().hashCode() : 0);
-        } catch (NegativeWeightException | NegativeCaloriesException | NegativePriceException e) {
-        }
+
+        result = super.hashCode();
+        result = prime * result + ((country != null) ? country.hashCode() : 0);
+
         return result;
     }
 }

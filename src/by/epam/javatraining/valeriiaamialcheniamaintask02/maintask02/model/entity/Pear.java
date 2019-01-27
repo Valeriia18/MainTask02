@@ -17,12 +17,24 @@ public class Pear extends GardenFruit {
    private double magnesiumPer100g;
 
     public Pear(String name, double price, double weight, double caloriePer100g,
-            String type, double vitaminA, double calcium, double magnesiumPer100g) {
+            FruitType type, double vitaminA, double calcium, double magnesiumPer100g) {
 
         super(name, price, weight, caloriePer100g, type, vitaminA, calcium);
         this.magnesiumPer100g = magnesiumPer100g;
     }
+    public Pear() {
 
+        super();
+        this.magnesiumPer100g = 0.0;
+    }
+
+    public void setMagnesiumPer100g() {
+        if (magnesiumPer100g > 0) {
+            this.magnesiumPer100g = magnesiumPer100g;
+        } else {
+            magnesiumPer100g = 0;
+        }
+    }
     public double getMagnesiumPer100g() throws NegativeVitaminsException {
         if (magnesiumPer100g <= 0) {
             throw new NegativeVitaminsException();
@@ -32,21 +44,9 @@ public class Pear extends GardenFruit {
 
     @Override
     public String toString() {
-        String s = "";
-        try {
-            s = "\n Name: " + getName()
-                    + "\n Price: " + getPrice() + "\n Weight: " + getWeight()
-                    + "\n Calories per 100g: " + getCaloriePer100g()
-                    + "\n Kind of fruit: " + getType() + "\n Vitamin A per 100g fruit: "
-                    + getVitaminAPer100g() + "\n Calcium per 100g fruit: "
-                    + getCalciumPer100g() + "\n Magnesium per 100g: "
-                    + getMagnesiumPer100g();
-
-        } catch (NegativeWeightException | NegativeCaloriesException
-                | NegativeVitaminsException | NegativePriceException a) {
-        }
-
-        return s;
+        String s = super.toString() + "\n Magnesium per 100g: "
+                    + magnesiumPer100g; 
+            return s;
     }
     @Override
     public boolean equals(Object object) {
@@ -57,18 +57,10 @@ public class Pear extends GardenFruit {
         if (object == null || object.getClass() != this.getClass()) {
             return false;
         }
-        try {
-            Pear fruit = (Pear) object;
-            result = getName().equals(fruit.getName()) && getPrice() == fruit.getPrice()
-                    && getWeight() == fruit.getWeight()
-                    && getCaloriePer100g() == fruit.getCaloriePer100g()
-                    && getType().equals(fruit.getType()) && getVitaminAPer100g()
-                    == fruit.getVitaminAPer100g() && getCalciumPer100g()
-                    == fruit.getCalciumPer100g() && getMagnesiumPer100g() 
-                    == fruit.getMagnesiumPer100g();
-        } catch (NegativeWeightException | NegativeCaloriesException
-                | NegativePriceException | NegativeVitaminsException e) {
-        }
+        Pear fruit = (Pear) object;
+            result = super.equals(fruit) && magnesiumPer100g
+                    == fruit.magnesiumPer100g;
+       
         return result;
     }
 
@@ -76,18 +68,10 @@ public class Pear extends GardenFruit {
     public int hashCode() {
         final int prime = 37;
         int result = 1;
-        try {
-            result = prime * result + ((getName() != null) ? getName().hashCode() : 0);
-            result = (int) (prime * result + getPrice());
-            result = (int) (prime * result + getWeight());
-            result = (int) (prime * result + getCaloriePer100g());
-            result = prime * result + ((getType() != null) ? getType().hashCode() : 0);
-            result = (int) (prime * result + getVitaminAPer100g());
-            result = (int) (prime * result + getCalciumPer100g());
-            result = (int) (prime * result + getMagnesiumPer100g());
-        } catch (NegativeWeightException | NegativeCaloriesException
-                | NegativePriceException | NegativeVitaminsException e) {
-        }
+        
+         result = super.hashCode();
+            result = (int) (prime * result + magnesiumPer100g);
+        
         return result;
     }
 }

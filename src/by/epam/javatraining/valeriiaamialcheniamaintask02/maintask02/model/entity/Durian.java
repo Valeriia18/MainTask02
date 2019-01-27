@@ -17,9 +17,18 @@ public class Durian extends ExoticFruit {
     private String alcoholNotification;
 
     public Durian(String name, double price, double weight, double caloriePer100g,
-            String type, boolean isPoisonous, String alcoholNotification) {
+            FruitType type, boolean isPoisonous, String alcoholNotification) {
         super(name, price, weight, caloriePer100g, type, isPoisonous);
         this.alcoholNotification = alcoholNotification;
+    }
+
+    public Durian() {
+        this.alcoholNotification = " ";
+    }
+
+    public void setAlcoholNotification() {
+        this.alcoholNotification = alcoholNotification;
+
     }
 
     public String getAlcoholNotification() {
@@ -28,18 +37,8 @@ public class Durian extends ExoticFruit {
 
     @Override
     public String toString() {
-        String s = "";
-        try {
-            s = "\n Name: " + getName()
-                    + "\n Price: " + getPrice() + "\n Weight: " + getWeight()
-                    + "\n Calories per 100g: " + getCaloriePer100g()
-                    + "\n Kind of fruit: " + getType() + "\n Fruit is poisonous: "
-                    + getPoisonous() + "\n Important Notification: " + getAlcoholNotification();
+        String s = super.toString() + "\n Important Notification: " + alcoholNotification;
 
-        } catch (NegativeWeightException | NegativeCaloriesException | NegativePriceException a) {
-
-        } catch (PoisonousFruitException p) {
-        }
         return s;
     }
 
@@ -52,17 +51,11 @@ public class Durian extends ExoticFruit {
         if (object == null || object.getClass() != this.getClass()) {
             return false;
         }
-        try {
-            Durian fruit = (Durian) object;
-            result = getName().equals(fruit.getName()) && getPrice() == fruit.getPrice()
-                    && getWeight() == fruit.getWeight()
-                    && getCaloriePer100g() == fruit.getCaloriePer100g()
-                    && getType().equals(fruit.getType()) && getPoisonous()
-                    == fruit.getPoisonous() && getAlcoholNotification()
-                    == fruit.getAlcoholNotification();
-        } catch (NegativeWeightException | NegativeCaloriesException
-                | NegativePriceException | PoisonousFruitException e) {
-        }
+
+        Durian fruit = (Durian) object;
+        result = super.equals(fruit) && alcoholNotification
+                == fruit.getAlcoholNotification();
+
         return result;
     }
 
@@ -70,17 +63,10 @@ public class Durian extends ExoticFruit {
     public int hashCode() {
         final int prime = 37;
         int result = 1;
-        try {
-            result = prime * result + ((getName() != null) ? getName().hashCode() : 0);
-            result = (int) (prime * result + getPrice());
-            result = (int) (prime * result + getWeight());
-            result = (int) (prime * result + getCaloriePer100g());
-            result = prime * result + ((getType() != null) ? getType().hashCode() : 0);
-            result = prime * result + ((getAlcoholNotification() != null)
-                    ? getAlcoholNotification().hashCode() : 0);
-        } catch (NegativeWeightException | NegativeCaloriesException
-                | NegativePriceException e) {
-        }
+        result = super.hashCode();
+        result = prime * result + ((alcoholNotification != null)
+                ? alcoholNotification.hashCode() : 0);
+
         return result;
     }
 }
