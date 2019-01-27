@@ -15,6 +15,6 @@ import java.util.Comparator;
 public class TypeComparator implements Comparator <Fruit> {
     @Override
     public int compare(Fruit o1, Fruit o2) {
-       return o1.getType().compareToIgnoreCase(o2.getType());
+       return o1.getType().compareTo(o2.getType());
     }
 }

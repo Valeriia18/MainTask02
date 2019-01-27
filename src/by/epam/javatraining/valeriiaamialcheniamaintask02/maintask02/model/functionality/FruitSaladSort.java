@@ -6,8 +6,10 @@
 package by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.model.functionality;
 
 import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.model.entity.Fruit;
+import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.model.entity.Salad;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -15,15 +17,19 @@ import java.util.Collections;
  */
 public class FruitSaladSort {
 
-    public void sortFruitsByName(ArrayList<Fruit> list) {
-        Collections.sort(list, new NameComparator());
+    public void sortFruitsByName(Salad salad) {
+        List<Fruit> fruits = salad.getFruits();
+        Collections.sort(fruits, new NameComparator());
 
     }
 
-    public  void sortFruitsByType(ArrayList<Fruit> list) {
-        Collections.sort(list, new TypeComparator());
+    public void sortFruitsByType(Salad salad) {
+        List<Fruit> fruits = salad.getFruits();
+        Collections.sort(fruits, new TypeComparator());
     }
-    public  void sortFruitsByPrice(ArrayList<Fruit> list) {
-        Collections.sort(list, new PriceComparator());
+
+    public void sortFruitsByPrice(Salad salad) {
+        List<Fruit> fruits = salad.getFruits();
+        Collections.sort(fruits, new PriceComparator());
     }
 }

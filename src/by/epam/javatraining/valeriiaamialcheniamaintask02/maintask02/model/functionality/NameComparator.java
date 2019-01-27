@@ -22,7 +22,7 @@ public class NameComparator implements Comparator<Fruit> {
     @Override
     public int compare(Fruit o1, Fruit o2) {
         int result = 0;
-        try {
+     
             double p1 = o1.getPrice();
             double p2 = o2.getPrice();
 
@@ -33,8 +33,7 @@ public class NameComparator implements Comparator<Fruit> {
             } else {
                 result = 0;
             }
-        } catch (NegativePriceException c) {
-        }
+        
         return result;
     }
 

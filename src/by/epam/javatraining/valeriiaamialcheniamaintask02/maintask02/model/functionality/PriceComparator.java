@@ -20,10 +20,9 @@ public class PriceComparator implements Comparator<Fruit> {
     @Override
     public int compare(Fruit o1, Fruit o2) {
         int result = 0;
-        try {
+        
             result = (int) (o1.getPrice() - o2.getPrice());
-        } catch (NegativePriceException ex) {
-        }
+        
         return result;
     }
 }

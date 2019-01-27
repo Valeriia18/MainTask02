@@ -6,86 +6,83 @@ import by.epam.javatraining.valeriiaamialchenia.maintask02.controller.MainTask02
 import by.epam.javatraining.valeriiaamialcheniamaintask02.maintask02.view.LogPrinter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  *
  * @author Алексей-Валерия
  */
 public class FruitsSearch {
-private static LogPrinter lp = new LogPrinter();
-    public static StringBuilder findMaxCalorificFruit(ArrayList<Fruit> list) {
+
+    private static LogPrinter lp = new LogPrinter();
+
+    public static StringBuilder findMaxCalorificFruit(Salad salad) {
         StringBuilder builder = new StringBuilder();
+        List<Fruit> fruits = salad.getFruits();
         double MaxCalorificValue = 0;
         String MaxCalorificFruit = "";
-        try {
-            for (Fruit temp : list) {
-                if (temp.getCaloriePer100g() > MaxCalorificValue) {
-                    MaxCalorificValue = temp.getCaloriePer100g();
-                    builder.setLength(0);
-                    builder.append(temp.getName());
-                }
+        for (Fruit temp : fruits) {
+            if (temp.getCaloriePer100g() > MaxCalorificValue) {
+                MaxCalorificValue = temp.getCaloriePer100g();
+                builder.setLength(0);
+                builder.append(temp.getName());
             }
-        } catch (NegativeCaloriesException b) {
         }
+
         return builder;
     }
 
-    public static String findMostExpensiveFruit(ArrayList<Fruit> list)
+    public static String findMostExpensiveFruit(Salad salad)
             throws NullArrayException, NegativePriceException {
         String s = "";
         double highestPrice = 0;
-
-        if (list == null) {
+        List<Fruit> fruits = salad.getFruits();
+        if (fruits == null) {
             throw new NullArrayException();
         } else {
-            try {
-                for (Fruit temp : list) {
-                    if (temp.getPrice() > highestPrice) {
-                        highestPrice = temp.getPrice();
-                        s = temp.getName();
-                    }
-                }
-            } catch (NegativePriceException p) {
 
+            for (Fruit temp : fruits) {
+                if (temp.getPrice() > highestPrice) {
+                    highestPrice = temp.getPrice();
+                    s = temp.getName();
+                }
             }
+
         }
         return "The most expensive fruit is " + s + ". The price is " + highestPrice;
         //return s;
     }
 
-    public static String findCheapestFruit(ArrayList<Fruit> list) throws
+    public static String findCheapestFruit(Salad salad) throws
             NullArrayException, NegativePriceException {
         String s = "";
         double lowestPrice = 0;
-        if (list == null) {
+        List<Fruit> fruits = salad.getFruits();
+        if (fruits == null) {
             throw new NullArrayException();
         }
-        try {
-            lowestPrice = list.get(0).getPrice();
 
-            for (Fruit temp : list) {
-                if (lowestPrice > temp.getPrice()) {
-                    lowestPrice = temp.getPrice();
-                    s = temp.getName();
-                }
+        lowestPrice = fruits.get(0).getPrice();
+
+        for (Fruit temp : fruits) {
+            if (lowestPrice > temp.getPrice()) {
+                lowestPrice = temp.getPrice();
+                s = temp.getName();
             }
-        } catch (NegativePriceException e) {
         }
 
         return "The cheapest fruit is " + s + ". The price is " + lowestPrice;
     }
 
-    public static StringBuilder findFruitByPrice(double a, double b, ArrayList<Fruit> list) throws NegativePriceException {
+    public static StringBuilder findFruitByPrice(double a, double b, Salad salad) {
         StringBuilder builder = new StringBuilder();
-        try {
-            for (Fruit temp : list) {
-                if (temp.getPrice() >= a && temp.getPrice() <= b) {
-                    builder.append(temp.getName()).append("(").append(temp.getType()).append(")");
-                }
+        List<Fruit> fruits = salad.getFruits();
+        for (Fruit temp : fruits) {
+            if (temp.getPrice() >= a && temp.getPrice() <= b) {
+                builder.append(temp.getName()).append("(").append(temp.getType()).append(")");
             }
-        } catch (NegativePriceException p) {
-
         }
+
         if (a < 0 || b < 0) {
 
             throw new IllegalArgumentException("Check entered numbers. They cannot be negative");
@@ -94,19 +91,17 @@ private static LogPrinter lp = new LogPrinter();
     }
 
     public static StringBuilder findFruitByCaloriesPer100g(double a, double b,
-            ArrayList<Fruit> list) throws NegativePriceException {
+            Salad salad) {
         StringBuilder builder = new StringBuilder();
-        try {
-            for (Fruit temp : list) {
-                if ((temp.getCaloriePer100g() >= a && temp.getCaloriePer100g() <= b)
-                        || (temp.getCaloriePer100g() >= b && temp.getCaloriePer100g()
-                        <= a)) {
-                    builder.append(temp.getName()).append("(").append(temp.getType()).append("), ");
-                }
+        List<Fruit> fruits = salad.getFruits();
+        for (Fruit temp : fruits) {
+            if ((temp.getCaloriePer100g() >= a && temp.getCaloriePer100g() <= b)
+                    || (temp.getCaloriePer100g() >= b && temp.getCaloriePer100g()
+                    <= a)) {
+                builder.append(temp.getName()).append("(").append(temp.getType()).append("), ");
             }
-        } catch (NegativeCaloriesException p) {
-
         }
+
         if (a < 0 || b < 0) {
 
             throw new IllegalArgumentException("Check entered numbers. They cannot be negative");
@@ -114,11 +109,12 @@ private static LogPrinter lp = new LogPrinter();
         return builder;
     }
 
-    public static StringBuilder findFruitByName(String name, ArrayList<Fruit> list) {
+    public static StringBuilder findFruitByName(String name, Salad salad) {
         StringBuilder builder = new StringBuilder();
-        for (Fruit temp : list) {
+        List<Fruit> fruits = salad.getFruits();
+        for (Fruit temp : fruits) {
             if (name == null) {
-               lp.print("");
+                lp.print("");
                 lp.print("String with name cannot be empty!");
             } else if (name.equals(temp.getName())) {
                 builder.append(temp.getName()).append("(").append(temp.getType()).append("), ");
@@ -129,19 +125,18 @@ private static LogPrinter lp = new LogPrinter();
 
     }
 
-    public static String findMaxCalorificFruit2(ArrayList<Fruit> list) {
+    public static String findMaxCalorificFruit2(Salad salad) {
         String s = "";
         double MaxCalorificValue = 0;
         String MaxCalorificFruit = "";
-        try {
-            for (Fruit temp : list) {
-                if (temp.getCaloriePer100g() > 0) {
-                    s = temp.getName();
+        List<Fruit> fruits = salad.getFruits();
+        for (Fruit temp : fruits) {
+            if (temp.getCaloriePer100g() > 0) {
+                s = temp.getName();
 
-                }
             }
-        } catch (NegativeCaloriesException b) {
         }
+
         return s;
     }
 
